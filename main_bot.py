@@ -448,8 +448,10 @@ class Database:
     def add_code(self, code: str, days: int):
         conn = self.get_conn()
         c = conn.cursor()
-        c.execute('INSERT INTO reply_codes (code, days) VALUES (%s, %s)
-                   ON CONFLICT (code) DO NOTHING', (code, days))
+        c.execute(
+            'INSERT INTO reply_codes (code, days) VALUES (%s, %s) ON CONFLICT (code) DO NOTHING',
+            (code, days)
+        )
         conn.commit()
         conn.close()
 
